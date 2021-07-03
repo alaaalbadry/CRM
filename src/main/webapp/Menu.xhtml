@@ -1,0 +1,87 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" dir="rtl">
+
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition>
+		<style type="text/css">
+.ui-menu .ui-menuitem-text {
+	float: right;
+}
+
+.ui-menu .ui-menu-parent .ui-menu-child {
+	right: 220px;
+}
+
+.ui-panelmenu .ui-menuitem-text {
+	float: none;
+	margin-right: 14px;
+}
+
+.ui-panelmenu .ui-panelmenu-header .ui-icon {
+	margin-left: 21px;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+}
+
+.ui-panelmenu .ui-menu-parent .ui-panelmenu-icon.ui-icon {
+	margin-left: 10px;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+}
+
+.ui-panelmenu .ui-widget {
+	width: 298px;
+}
+
+.ui-panelmenu .ui-panelmenu-header a {
+	font-weight: bold;
+	font-size: large;
+}
+</style>
+		<h:form>
+	
+			<p:panelGrid style="width : 100% ; border :0">
+				<p:row style="width : 100 ; border :0">
+					<p:column style="width : 95% ; border :0">
+
+						<p:panelMenu style="width:300px">
+							<p:submenu label="Search">
+								<p:menuitem value="view customers" url="SearchCustomer.xhtml" action="customerBean.getAllCustomers" />
+							</p:submenu>
+
+							<p:submenu label="Create">
+									<p:menuitem value="New Customer" url="Customer.xhtml"  style="margin-right: 6px;" />
+							</p:submenu>
+
+							<p:submenu label="Help">
+							</p:submenu>
+						</p:panelMenu>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>

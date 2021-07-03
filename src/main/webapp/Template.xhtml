@@ -1,0 +1,85 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" dir="rtl">
+
+<h:head>
+	<title>CRM</title>
+		<style type="text/css">
+.ui-layout-unit {
+	text-align: justify;
+}
+
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-list-item label {
+	margin-left: 2px;
+}
+
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-list-item .ui-chkbox
+	{
+	margin-right: -1.5rem;
+}
+
+.ui-layout-unit .ui-widget .ui-widget-content .ui-corner-all .ui-layout-center .ui-layout-pane .ui-layout-pane-center
+	{
+	inset: 100.465px 0px 51.665px;
+}
+
+.ui-layout-unit .ui-widget .ui-widget-content .ui-corner-all .ui-layout-north .ui-layout-pane .ui-layout-pane-north .ui-layout-pane-hover .ui-layout-pane-north-hover .ui-layout-pane-open-hover .ui-layout-pane-north-open-hover
+	{
+	height: 49.4275%;
+}
+
+.ui-layout-unit-content .ui-widget-content {
+	height: 150%;
+}
+</style>
+</h:head>
+<h:body>
+	<f:view rendered="true" id="acfView">
+
+		<p:layout fullPage="true">
+
+			<p:layoutUnit position="north" resizable="false" closable="false"
+				collapsible="false" style="border: 0 " >
+				<div title="Header" style="height:150 px">
+					<ui:insert name="header">
+						<ui:include src="Header.xhtml" />
+					</ui:insert>
+				</div>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="east" closable="true">
+			<div title="menu">
+					<ui:insert name="menu">
+							<ui:include src="Menu.xhtml" />
+						</ui:insert>
+						</div>
+			</p:layoutUnit>
+
+
+			<p:layoutUnit position="center">
+				<div title="Content">
+					<ui:insert name="content">
+					</ui:insert>
+				</div>
+			</p:layoutUnit>
+
+
+			<p:layoutUnit position="south" closable="false" collapsible="false">
+				<div title="Footer">
+					<ui:insert name="footer">
+						<ui:include src="Footer.xhtml" />
+					</ui:insert>
+				</div>
+			</p:layoutUnit>
+
+		</p:layout>
+	</f:view>
+
+</h:body>
+</html>

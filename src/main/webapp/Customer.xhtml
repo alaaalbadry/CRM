@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="Template.xhtml">
+	<f:metadata>
+		<f:viewParam name="id" value="#{customerBean.customerId}" />
+		<f:viewAction action="#{customerBean.searchById}" />
+	</f:metadata>
+	<ui:define name="content" id="layout">
+		<h:form id="customerForm" enctype="multipart/form-data;charset=UTF-8">
+			<p:growl id="msgs" showDetail="true" />
+			<p:panelGrid columns="2" id="p1" align="left"
+				contentStyleClass="text-align:left;" style="width:100%">
+
+				<p:outputLabel for="CustomerName" value="Customer Name" />
+				<p:inputText id="CustomerName"
+					value="#{customerBean.customer.customerName}" required="true"
+					requiredMessage="please enter your name" />
+
+
+				<p:outputLabel for="Country" value="Country" />
+				<p:selectOneMenu id="Country" required="true"
+					requiredMessage="please choose country" filter="true"
+					filterMatchMode="contains" value="#{customerBean.customer.country}"
+					converter="genericConverter" noSelectionOption="true"
+					style="width:125px" dir="rtl">
+					<f:selectItem itemLabel="" itemValue="" />
+					<f:selectItems value="#{customerBean.countries}" var="cn"
+						itemLabel="#{cn.countryValue}" itemValue="#{cn}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="City" value="City" />
+				<p:selectOneMenu id="City" required="true"
+					requiredMessage="please choose city" filter="true"
+					filterMatchMode="contains" value="#{customerBean.customer.city}"
+					converter="genericConverter" noSelectionOption="true"
+					style="width:125px" dir="rtl">
+					<f:selectItem itemLabel="" itemValue="" />
+					<f:selectItems value="#{customerBean.cities}" var="ct"
+						itemLabel="#{ct.cityValue}" itemValue="#{ct}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="Address" value="Address" />
+				<p:inputText id="Address" value="#{customerBean.customer.address}"
+					required="true" requiredMessage="please enter your address" />
+
+				<p:outputLabel for="TaxNumber" value="Tax Number" />
+				<p:inputText id="TaxNumber"
+					value="#{customerBean.customer.taxNumber}"
+					requiredMessage="please enter your Tax Number" />
+
+
+				<p:selectBooleanCheckbox value="#{customerBean.customer.active}"
+					itemLabel="Active">
+					<p:ajax update="msgs" listener="#{customerBean.addMessage}" />
+				</p:selectBooleanCheckbox>
+
+
+				<p:fileUpload id="uploadBtn" update="custPic"
+					fileUploadListener="#{customerBean.handleFileUpload}"
+					mode="advanced" allowTypes="/(\.|\/)(gif|jpe?g|png|PNG)$/"
+					accept=".gif,.jpg,.jpeg,.png,.PNG" />
+				<p:panel >
+				
+					<p:graphicImage id="custPic" value="#{customer.customerPicPath}" width="80"  height="80" rendered="#{customerBean.renderEditBtn}"/>
+						
+				</p:panel>
+
+
+
+			</p:panelGrid>
+
+			<p:panel>
+				<p:commandButton value="edit" id="editBtn" ajax="true"
+					styleClass="rounded-button"
+					rendered="#{customerBean.renderEditBtn}" update="customerForm"
+					onclick="PF('bui').show();" oncomplete="PF('bui').hide()"
+					actionListener="#{customerBean.editCustomer}">
+				</p:commandButton>
+
+				<p:commandButton value="ADD" id="addBtn" styleClass="rounded-button"
+					update="customerForm" rendered="#{customerBean.renderAddBtn}"
+					actionListener="#{customerBean.addNew}" onclick="PF('bui').show();"
+					oncomplete="PF('bui').hide()">
+				</p:commandButton>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

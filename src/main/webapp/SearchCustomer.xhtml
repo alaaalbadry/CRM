@@ -1,0 +1,98 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" dir="rtl">
+
+<ui:composition template="Template.xhtml">
+
+	<ui:define name="content" id="layout">
+		<h:form id="customerForm">
+			<p:growl id="msgs" showDetail="true" />
+			<p:panel header="Search Info" id="customerSearchInfo">
+				<p:panelGrid columns="8" id="tab"
+					contentStyleClass="p-align-baseline ui-fluid" style="width:200%">
+
+					<p:dataTable id="searchTable" var="customer"
+						value="#{customerBean.searchCustomers}" dir="rtl" rows="10"
+						style="margin-bottom:20px; width:98%" scrollable="true"
+						scrollWidth="100%" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+						rowsPerPageTemplate="5,10">
+
+						<p:column exportable="false" width="7%">
+							<f:facet name="header">
+								<h:outputText value="edit" />
+							</f:facet>
+							<p:link outcome="Customer.xhtml" value="edit">
+								<f:param name="id" value="#{customer.id}" />
+							</p:link>
+						</p:column>
+						<p:column headerText="delete" width="7%">
+							<p:commandButton class="ui-button-warning rounded-button"
+								label="delete" value="delete"
+								action="#{customerBean.delete(customer)}" update="searchTable" />
+						</p:column>
+
+						<p:column sortBy="#{customer.active}" width="15%"
+							filterBy="#{customer.active}">
+							<f:facet name="header">
+								<h:outputText value="active" />
+							</f:facet>
+							<h:selectBooleanCheckbox value="#{customer.active}" disabled="true"/>
+
+						</p:column>
+						<p:column sortBy="#{customer.customerName}" width="15%"
+							filterBy="#{customer.customerName}">
+							<f:facet name="header">
+								<h:outputText value="customer name" />
+							</f:facet>
+							<h:outputText value="#{customer.customerName}" />
+						</p:column>
+
+						<p:column width="15%" sortBy="#{customer.country.countryValue}"
+							filterBy="#{customer.country.countryValue}">
+							<f:facet name="header">
+								<h:outputText value="country" />
+							</f:facet>
+							<h:outputText value="#{customer.country.countryValue}" />
+						</p:column>
+
+						<p:column width="15%" sortBy="#{customer.city.cityValue}"
+							filterBy="#{customer.city.cityValue}">
+							<f:facet name="header">
+								<h:outputText value="city" />
+							</f:facet>
+							<h:outputText value="#{customer.city.cityValue}" />
+						</p:column>
+
+						<p:column sortBy="#{customer.address}" width="15%"
+							filterBy="#{customer.address}">
+							<f:facet name="header">
+								<h:outputText value="address" />
+							</f:facet>
+							<h:outputText value="#{customer.address}" />
+						</p:column>
+
+						<p:column sortBy="#{customer.taxNumber}" width="15%"
+							filterBy="#{customer.taxNumber}">
+							<f:facet name="header">
+								<h:outputText value="taxNumber" />
+							</f:facet>
+							<h:outputText value="#{customer.taxNumber}" />
+						</p:column>
+
+					</p:dataTable>
+					<p:blockUI block="customerForm" widgetVar="bui" />
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
